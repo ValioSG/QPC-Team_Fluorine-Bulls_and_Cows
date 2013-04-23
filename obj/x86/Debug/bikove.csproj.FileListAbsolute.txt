@@ -1,0 +1,5 @@
+C:\Telerik Academy\KPK\Team Work\Bulls-and-Cows\Bulls-and-Cows-2\bin\Debug\BullsAndCowsGame.exe
+C:\Telerik Academy\KPK\Team Work\Bulls-and-Cows\Bulls-and-Cows-2\bin\Debug\BullsAndCowsGame.pdb
+C:\Telerik Academy\KPK\Team Work\Bulls-and-Cows\Bulls-and-Cows-2\obj\x86\Debug\bikove.csprojResolveAssemblyReference.cache
+C:\Telerik Academy\KPK\Team Work\Bulls-and-Cows\Bulls-and-Cows-2\obj\x86\Debug\BullsAndCowsGame.exe
+C:\Telerik Academy\KPK\Team Work\Bulls-and-Cows\Bulls-and-Cows-2\obj\x86\Debug\BullsAndCowsGame.pdb
