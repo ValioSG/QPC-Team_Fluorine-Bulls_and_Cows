@@ -5,25 +5,27 @@ using System.Text;
 
 namespace CowsAndBulls
 {
-    public class BullsAndCowsNumber
+    public class SecretNumber
     {
         Random rrr;
         char[] cheatNumber;
 
-        public BullsAndCowsNumber()
-        {
-            rrr = new Random();
-            cheatNumber = new char[4] { 'X', 'X', 'X', 'X' };
-            this.cheats = 0;
-            this.GuessesCount = 0;
-            this.GenerateRandomNumbers();
-        }
-
-        public int cheats
+        public int Cheats
         {
             get;
             private set;
         }
+
+        public SecretNumber()
+        {
+            rrr = new Random();
+            cheatNumber = new char[4] { 'X', 'X', 'X', 'X' };
+            this.Cheats = 0;
+            this.GuessesCount = 0;
+            this.GenerateRandomNumbers();
+        }
+
+        
 
         public int GuessesCount
         {
@@ -57,7 +59,7 @@ namespace CowsAndBulls
 
         public string GetCheat()
         {
-            if (this.cheats < 4)
+            if (this.Cheats < 4)
             {
                 while (true)
                 {
@@ -74,12 +76,12 @@ namespace CowsAndBulls
                         break;
                     }
                 }
-                cheats++;
+                Cheats++;
             }
             return new String(cheatNumber);
         }
 
-        public Result TryToGuess(string number)
+        public Result CheckUserGuess(string number)
         {
             if (string.IsNullOrEmpty(number) || number.Trim().Length != 4)
             {
@@ -216,6 +218,7 @@ namespace CowsAndBulls
             guessResult.Bulls = bulls;
             guessResult.Cows = cows;
             return guessResult;
+
         }
 
         private void GenerateRandomNumbers()
@@ -238,7 +241,7 @@ namespace CowsAndBulls
 
         public override bool Equals(object obj)
         {
-            BullsAndCowsNumber objectToCompare = obj as BullsAndCowsNumber;
+            SecretNumber objectToCompare = obj as SecretNumber;
             if (objectToCompare == null)
             {
                 return false;

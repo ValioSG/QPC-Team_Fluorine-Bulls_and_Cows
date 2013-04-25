@@ -7,8 +7,36 @@ namespace CowsAndBulls
 {
     public struct Result
     {
-        public int Bulls;
-        public int Cows;
+        private int bulls;
+        private int cows;
+
+        public int Bulls
+        {
+            get
+            {
+                //get
+                return this.bulls;
+            }
+
+            set
+            {
+                this.bulls = value;
+            }
+        }
+
+        public int Cows
+        {
+            get
+            {
+                //set
+                return this.cows;
+            }
+
+            set
+            {
+                this.cows = value;
+            }
+        }
 
         public override string ToString()
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CowsAndBulls
 {
-    class Program
+    class GameEngine
     {
 	// ne szm sigurna dali raboti,ama e testvano 100% vcera do 3 4asa sutrinta
         public const string ScoresFile = "scores.txt";
@@ -15,10 +15,10 @@ namespace CowsAndBulls
         public const string NumberGuessedWithoutCheats = "Congratulations! You guessed the secret number in {0} {1}.\nPlease enter your name for the top scoreboard: ";
         public const string NumberGuessedWithCheats = "Congratulations! You guessed the secret number in {0} {1} and {2} {3}.\nYou are not allowed to enter the top scoreboard.";
         public const string GoodBuyMessage = "Good bye!";
-
+        
         static void Main(string[] args)
         {
-            BullsAndCowsNumber bullsAndCowsNumber = new BullsAndCowsNumber();
+            SecretNumber bullsAndCowsNumber = new SecretNumber();
             Scoreboard scoreBoard = new Scoreboard(ScoresFile);
             Console.WriteLine(WelcomeMessage);
             while (true)
@@ -41,7 +41,7 @@ namespace CowsAndBulls
                         {
                             Console.WriteLine();
                             Console.WriteLine(WelcomeMessage);
-                            bullsAndCowsNumber = new BullsAndCowsNumber();
+                            bullsAndCowsNumber = new SecretNumber();
                             break;
                         }
                     case "help":
@@ -53,10 +53,10 @@ namespace CowsAndBulls
                         {
                             try
                             {
-                                Result guessResult = bullsAndCowsNumber.TryToGuess(command);
+                                Result guessResult = bullsAndCowsNumber.CheckUserGuess(command);
                                 if (guessResult.Bulls == 4)
                                 {
-                                    if (bullsAndCowsNumber.cheats == 0)
+                                    if (bullsAndCowsNumber.Cheats == 0)
                                     {
                                         Console.Write(NumberGuessedWithoutCheats, bullsAndCowsNumber.GuessesCount, bullsAndCowsNumber.GuessesCount == 1 ? "attempt" : "attempts");
                                         string name = Console.ReadLine();
@@ -66,12 +66,12 @@ namespace CowsAndBulls
                                     {
                                         Console.WriteLine(NumberGuessedWithCheats,
                                             bullsAndCowsNumber.GuessesCount, bullsAndCowsNumber.GuessesCount == 1 ? "attempt" : "attempts",
-                                            bullsAndCowsNumber.cheats, bullsAndCowsNumber.cheats == 1? "cheat" : "cheats");
+                                            bullsAndCowsNumber.Cheats, bullsAndCowsNumber.Cheats == 1? "cheat" : "cheats");
                                     }
                                     Console.Write(scoreBoard);
                                     Console.WriteLine();
                                     Console.WriteLine(WelcomeMessage);
-                                    bullsAndCowsNumber = new BullsAndCowsNumber();
+                                    bullsAndCowsNumber = new SecretNumber();
                                 }
                                 else
                                 {

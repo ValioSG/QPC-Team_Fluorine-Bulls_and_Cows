@@ -8,12 +8,12 @@ namespace CowsAndBulls
 {
     public class Scoreboard
     {
-        private SortedSet<gameScore> scores;
+        private SortedSet<PlayerScore> scores;
         private const int MaxPlayersToShowInScoreboard = 10;
 
         public Scoreboard(string filename)
         {
-            this.scores = new SortedSet<gameScore>();
+            this.scores = new SortedSet<PlayerScore>();
             try
             {
                 using (StreamReader inputStream = new StreamReader(filename))
@@ -21,7 +21,7 @@ namespace CowsAndBulls
                     while (!inputStream.EndOfStream)
                     {
                         string scoreString = inputStream.ReadLine();
-                        this.scores.Add(gameScore.Deserialize(scoreString));
+                        this.scores.Add(PlayerScore.Deserialize(scoreString));
                     }
                 }
             }
@@ -33,7 +33,7 @@ namespace CowsAndBulls
 
         public void AddScore(string name, int guesses)
         {
-            gameScore newScore = new gameScore(name, guesses);
+            PlayerScore newScore = new PlayerScore(name, guesses);
             this.scores.Add(newScore);
         }
 
@@ -43,7 +43,7 @@ namespace CowsAndBulls
             {
                 using (StreamWriter outputStream = new StreamWriter(filename))
                 {
-                    foreach (gameScore gameScore in scores)
+                    foreach (PlayerScore gameScore in scores)
                     {
                         outputStream.WriteLine(gameScore.Serialize());
                     }
@@ -64,7 +64,7 @@ namespace CowsAndBulls
             StringBuilder scoreBoard = new StringBuilder();
             scoreBoard.AppendLine("Scoreboard:");
             int count = 0;
-            foreach (gameScore gameScore in scores)
+            foreach (PlayerScore gameScore in scores)
             {
                 count++;
                 scoreBoard.AppendLine(string.Format("{0}. {1}", count, gameScore));

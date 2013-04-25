@@ -6,9 +6,9 @@ using System.Runtime.Serialization;
 
 namespace CowsAndBulls
 {
-    public class gameScore : IComparable
+    public class PlayerScore : IComparable
     {
-        public gameScore(string ime, int guesses)
+        public PlayerScore(string ime, int guesses)
         {
             this.Name = ime;
             this.Guesses = guesses;
@@ -19,23 +19,22 @@ namespace CowsAndBulls
             get;
             private set;
         }
+
         public int Guesses
         {
             get;
             private set;
         }
+
         public override bool Equals(object obj)
         {
-            gameScore objectToCompare = obj as gameScore;
+            PlayerScore objectToCompare = obj as PlayerScore;
             if (objectToCompare == null)
             {
                 return false;
             }
             else
             {
-
-
-
                 return this.Guesses.Equals(objectToCompare) && this.Name.Equals(objectToCompare);
             }
         }
@@ -52,7 +51,7 @@ namespace CowsAndBulls
 
         public int CompareTo(object obj)
         {
-            gameScore objectToCompare = obj as gameScore;
+            PlayerScore objectToCompare = obj as PlayerScore;
             if (objectToCompare == null)
             {
                 return -1;
@@ -73,11 +72,8 @@ namespace CowsAndBulls
         public string Serialize()
         {
             return string.Format("{0}_:::_{1}", this.Name, this.Guesses);
-
-
-
         }
-        public static gameScore Deserialize(string data)
+        public static PlayerScore Deserialize(string data)
         {
             string[] dataAsStringArray = data.Split(new string[] { "_:::_" }, StringSplitOptions.None);
             if (dataAsStringArray.Length != 2) return null;
@@ -87,7 +83,7 @@ namespace CowsAndBulls
             int guesses = 0;
             int.TryParse(dataAsStringArray[1], out guesses);
 
-            return new gameScore(name, guesses);
+            return new PlayerScore(name, guesses);
         }
     }
 }
