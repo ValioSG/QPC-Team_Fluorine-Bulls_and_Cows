@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CowsAndBulls
 {
-    public struct Result
+    public struct rezultat
     {
         public int Bulls;
         public int Cows;

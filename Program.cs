@@ -53,7 +53,7 @@ namespace CowsAndBulls
                         {
                             try
                             {
-                                Result guessResult = bullsAndCowsNumber.TryToGuess(command);
+                                rezultat guessResult = bullsAndCowsNumber.TryToGuess(command);
                                 if (guessResult.Bulls == 4)
                                 {
                                     if (bullsAndCowsNumber.cheats == 0)
