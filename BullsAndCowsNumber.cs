@@ -79,7 +79,7 @@ namespace CowsAndBulls
             return new String(cheatNumber);
         }
 
-        public rezultat TryToGuess(string number)
+        public Result TryToGuess(string number)
         {
             if (string.IsNullOrEmpty(number) || number.Trim().Length != 4)
             {
@@ -88,7 +88,7 @@ namespace CowsAndBulls
             return TryToGuess(number[0] - '0', number[1] - '0', number[2] - '0', number[3] - '0');
         }
 
-        private rezultat TryToGuess(int firstDigit, int secondDigit, int thirdDigit, int fourthDigit)
+        private Result TryToGuess(int firstDigit, int secondDigit, int thirdDigit, int fourthDigit)
         {
             if (firstDigit < 0 || firstDigit > 9)
             {
@@ -212,7 +212,7 @@ namespace CowsAndBulls
                 cows++;
             }
 
-            rezultat guessResult = new rezultat();
+            Result guessResult = new Result();
             guessResult.Bulls = bulls;
             guessResult.Cows = cows;
             return guessResult;
