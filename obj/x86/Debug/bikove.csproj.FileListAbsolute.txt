@@ -5,3 +5,5 @@ C:\Telerik Academy\KPK\Team Work\Bulls-and-Cows\Bulls-and-Cows-2\obj\x86\Debug\B
 C:\Telerik Academy\KPK\Team Work\Bulls-and-Cows\Bulls-and-Cows-2\obj\x86\Debug\BullsAndCowsGame.pdb
 C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.exe
 C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.pdb
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.exe
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.pdb
