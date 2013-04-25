@@ -73,6 +73,7 @@ namespace CowsAndBulls
         {
             return string.Format("{0}_:::_{1}", this.Name, this.Guesses);
         }
+
         public static PlayerScore Deserialize(string data)
         {
             string[] dataAsStringArray = data.Split(new string[] { "_:::_" }, StringSplitOptions.None);
