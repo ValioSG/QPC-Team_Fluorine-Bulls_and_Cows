@@ -8,6 +8,7 @@ namespace CowsAndBulls
 {
     public class Scoreboard
     {
+        int i = 0;
         private SortedSet<gameScore> scores;
         private const int MaxPlayersToShowInScoreboard = 10;
 
