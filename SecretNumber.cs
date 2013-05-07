@@ -7,79 +7,135 @@ namespace CowsAndBulls
 {
     public class SecretNumber
     {
-        Random rrr;
-        char[] cheatNumber;
+        private const int MAX_CHEATS_COUNT = 4;
 
-        public int Cheats
+        private Random randomGenerator;
+        private char[] cheatNumber;
+        private int cheatsCount;
+        private int guessesCount;
+        private int firstDigit;
+        private int secondDigit;
+        private int thirdDigit;
+        private int fourthDigit;
+
+        public int CheatsCount
         {
-            get;
-            private set;
-        }
+            get
+            {
+                return this.cheatsCount;
+            }
 
-        public SecretNumber()
-        {
-            rrr = new Random();
-            cheatNumber = new char[4] { 'X', 'X', 'X', 'X' };
-            this.Cheats = 0;
-            this.GuessesCount = 0;
-            this.GenerateRandomNumbers();
+            private set
+            {
+                this.cheatsCount = value;
+            }
         }
-
-        
 
         public int GuessesCount
         {
-            get;
-            private set;
+            get
+            {
+                return this.guessesCount;
+            }
+
+            private set
+            {
+                this.guessesCount = value;
+            }
         }
 
         public int FirstDigit
         {
-            get;
-            private set;
+            get
+            {
+                return this.firstDigit;
+            }
+
+            private set
+            {
+                this.firstDigit = value;
+            }
         }
 
         public int SecondDigit
         {
-            get;
-            private set;
+            get
+            {
+                return this.secondDigit;
+            }
+
+            private set
+            {
+                this.secondDigit = value;
+            }
         }
 
         public int ThirdDigit
         {
-            get;
-            private set;
+            get
+            {
+                return this.thirdDigit;
+            }
+
+            private set
+            {
+                this.thirdDigit = value;
+            }
         }
 
         public int FourthDigit
         {
-            get;
-            private set;
+            get
+            {
+                return this.fourthDigit;
+            }
+
+            private set
+            {
+                this.fourthDigit = value;
+            }
+        }
+
+        public SecretNumber()
+        {
+            randomGenerator = new Random();
+            cheatNumber = new char[4] { 'X', 'X', 'X', 'X' };
+            this.CheatsCount = 0;
+            this.GuessesCount = 0;
+            this.GenerateRandomNumbers();
         }
 
         public string GetCheat()
         {
-            if (this.Cheats < 4)
+            if (this.CheatsCount < MAX_CHEATS_COUNT)
             {
                 while (true)
                 {
-                    int randPossition = rrr.Next(0, 4);
+                    int randPossition = randomGenerator.Next(0, 4);
                     if (cheatNumber[randPossition] == 'X')
 
                     {
                         switch (randPossition)
 	                    {
-                            case 0: cheatNumber[randPossition] = (char)(FirstDigit + '0'); break;
-                            case 1: cheatNumber[randPossition] = (char)(SecondDigit + '0'); break;
-                            case 2: cheatNumber[randPossition] = (char)(ThirdDigit + '0'); break;
-                            case 3: cheatNumber[randPossition] = (char)(FourthDigit + '0'); break;
+                            case 0: 
+                                cheatNumber[randPossition] = (char)(FirstDigit + '0'); 
+                                break;
+                            case 1: 
+                                cheatNumber[randPossition] = (char)(SecondDigit + '0');
+                                break;
+                            case 2: 
+                                cheatNumber[randPossition] = (char)(ThirdDigit + '0');
+                                break;
+                            case 3: 
+                                cheatNumber[randPossition] = (char)(FourthDigit + '0');
+                                break;
 	                    }
 
                         break;
                     }
                 }
 
-                Cheats++;
+                CheatsCount++;
             }
 
             return new String(cheatNumber);
@@ -230,10 +286,10 @@ namespace CowsAndBulls
 
         private void GenerateRandomNumbers()
         {
-            this.FirstDigit = rrr.Next(0, 10);
-            this.SecondDigit = rrr.Next(0, 10);
-            this.ThirdDigit = rrr.Next(0, 10);
-            this.FourthDigit = rrr.Next(0, 10);
+            this.FirstDigit = randomGenerator.Next(0, 10);
+            this.SecondDigit = randomGenerator.Next(0, 10);
+            this.ThirdDigit = randomGenerator.Next(0, 10);
+            this.FourthDigit = randomGenerator.Next(0, 10);
         }
 
         public override string ToString()
