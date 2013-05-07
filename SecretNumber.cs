@@ -147,6 +147,7 @@ namespace CowsAndBulls
             {
                 throw new ArgumentException("Invalid string number");
             }
+
             return TryToGuess(number[0] - '0', number[1] - '0', number[2] - '0', number[3] - '0');
         }
 
