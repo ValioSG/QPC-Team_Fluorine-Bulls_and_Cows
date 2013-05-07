@@ -65,6 +65,7 @@ namespace CowsAndBulls
                 {
                     int randPossition = rrr.Next(0, 4);
                     if (cheatNumber[randPossition] == 'X')
+
                     {
                         switch (randPossition)
 	                    {
@@ -73,11 +74,14 @@ namespace CowsAndBulls
                             case 2: cheatNumber[randPossition] = (char)(ThirdDigit + '0'); break;
                             case 3: cheatNumber[randPossition] = (char)(FourthDigit + '0'); break;
 	                    }
+
                         break;
                     }
                 }
+
                 Cheats++;
             }
+
             return new String(cheatNumber);
         }
 
@@ -96,14 +100,17 @@ namespace CowsAndBulls
             {
                 throw new ArgumentException("Invalid first digit");
             }
+
             if (secondDigit < 0 || secondDigit > 9)
             {
                 throw new ArgumentException("Invalid second digit");
             }
+
             if (thirdDigit < 0 || thirdDigit > 9)
             {
                 throw new ArgumentException("Invalid third digit");
             }
+
             if (fourthDigit < 0 || fourthDigit > 9)
             {
                 throw new ArgumentException("Invalid fourth digit");

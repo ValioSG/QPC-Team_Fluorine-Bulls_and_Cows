@@ -3,16 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowsAndBullsGame", "CowsAndBullsGame.csproj", "{47CF99F9-82C7-4092-BCEB-3809268FCAD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowsAndBullsTests", "..\CowsAndBullsTests\CowsAndBullsTests.csproj", "{94A04B48-E534-4506-BE03-A363D1029369}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Debug|x86.ActiveCfg = Debug|x86
 		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Debug|x86.Build.0 = Debug|x86
+		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Release|Any CPU.ActiveCfg = Release|x86
+		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Release|x86.ActiveCfg = Release|x86
 		{47CF99F9-82C7-4092-BCEB-3809268FCAD9}.Release|x86.Build.0 = Release|x86
+		{94A04B48-E534-4506-BE03-A363D1029369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{94A04B48-E534-4506-BE03-A363D1029369}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
