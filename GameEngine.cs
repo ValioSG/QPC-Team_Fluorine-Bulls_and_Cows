@@ -78,9 +78,14 @@ namespace CowsAndBulls
                                     Console.WriteLine("{0} {1}", WrongNumberMessage, guessResult);
                                 }
                             }
-                            catch (ArgumentException)
+                            catch (Exception ex)
                             {
-                                Console.WriteLine(InvalidCommandMessage);
+                                //Modified by KrisNickson => this way it will catch all 
+                                //expcetions the new validation in CheckUserGuess throws
+                                if (ex is ArgumentException || ex is FormatException)
+                                {
+                                    Console.WriteLine(InvalidCommandMessage);
+                                } 
                             }
                             break;
                         }
