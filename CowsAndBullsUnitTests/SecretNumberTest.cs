@@ -78,208 +78,219 @@ namespace CowsAndBullsTests
             secretNum.CheckUserGuess(invalidGuess);
         }
 
-        //[TestMethod]
-        //public void Test_GetMockNumber()
-        //{
-        //    string mockValue = "2375";
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void Test_CheckUserGuess_InputValidation_InvalidNumber2()
+        {
+            SecretNumber secretNum = new SecretNumber();
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            string invalidGuess = "222";
 
-        //    Assert.AreEqual(mockValue, mockNumber.ToString());
-        //}
+            secretNum.CheckUserGuess(invalidGuess);
+        }
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_CorrectGuess()
-        //{
-        //    SecretNumber sNum = new SecretNumber();
+        [TestMethod]
+        public void Test_GetMockNumber()
+        {
+            string mockValue = "2375";
 
-        //    string guess = sNum.ToString();
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //    Result guessResult = sNum.CheckUserGuess(guess);
+            Assert.AreEqual(mockValue, mockNumber.ToString());
+        }
 
-        //    Assert.AreEqual(4, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(0, guessResult.Cows, "Wrong cows count");
-        //}
+        [TestMethod]
+        public void Test_CheckUserGuess_CorrectGuess()
+        {
+            SecretNumber sNum = new SecretNumber();
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_1Bulls2Cows()
-        //{
-        //    string mockValue = "7725";
+            string guess = sNum.ToString();
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = sNum.CheckUserGuess(guess);
 
-        //    string guess = "2375";
+            Assert.AreEqual(4, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(0, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_1Bulls2Cows()
+        {
+            string mockValue = "7725";
 
-        //    Assert.AreEqual(1, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(2, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_0Bulls0Cows()
-        //{
-        //    string mockValue = "7725";
+            string guess = "2375";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "8946";
+            Assert.AreEqual(1, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(2, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_0Bulls0Cows()
+        {
+            string mockValue = "7725";
 
-        //    Assert.AreEqual(0, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(0, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_1Bulls0Cows()
-        //{
-        //    string mockValue = "7725";
+            string guess = "8946";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "1055";
+            Assert.AreEqual(0, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(0, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_1Bulls0Cows()
+        {
+            string mockValue = "7725";
 
-        //    Assert.AreEqual(1, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(0, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_0Bulls2Cows()
-        //{
-        //    string mockValue = "7725";
+            string guess = "1055";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "2253";
+            Assert.AreEqual(1, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(0, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_0Bulls2Cows()
+        {
+            string mockValue = "7725";
 
-        //    Assert.AreEqual(0, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(2, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_2Bulls2Cows()
-        //{
-        //    string mockValue = "7725";
+            string guess = "2253";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "2775";
+            Assert.AreEqual(0, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(2, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_2Bulls2Cows()
+        {
+            string mockValue = "7725";
 
-        //    Assert.AreEqual(2, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(2, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_0Bulls3Cows_RepeatingDigits()
-        //{
-        //    string mockValue = "7725";
+            string guess = "2775";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "2277";
+            Assert.AreEqual(2, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(2, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_0Bulls3Cows_RepeatingDigits()
+        {
+            string mockValue = "7725";
 
-        //    Assert.AreEqual(0, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(3, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_1Bulls1Cows_8130()
-        //{
-        //    string mockValue = "8130";
+            string guess = "2277";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "1234";
+            Assert.AreEqual(0, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(3, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_1Bulls1Cows_8130()
+        {
+            string mockValue = "8130";
 
-        //    Assert.AreEqual(1, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(1, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_0Bulls0Cows_8130()
-        //{
-        //    string mockValue = "8130";
+            string guess = "1234";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "4567";
+            Assert.AreEqual(1, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(1, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_0Bulls0Cows_8130()
+        {
+            string mockValue = "8130";
 
-        //    Assert.AreEqual(0, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(0, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_1Bulls2Cows_8130()
-        //{
-        //    string mockValue = "8130";
+            string guess = "4567";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "8901";
+            Assert.AreEqual(0, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(0, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_1Bulls2Cows_8130()
+        {
+            string mockValue = "8130";
 
-        //    Assert.AreEqual(1, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(2, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_0Bulls3Cows_8225()
-        //{
-        //    string mockValue = "8225";
+            string guess = "8901";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "2882";
+            Assert.AreEqual(1, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(2, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_0Bulls3Cows_8225()
+        {
+            string mockValue = "8225";
 
-        //    Assert.AreEqual(0, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(3, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_CheckUserGuess_0Bulls2Cows_6660()
-        //{
-        //    string mockValue = "6660";
+            string guess = "2882";
 
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    string guess = "0066";
+            Assert.AreEqual(0, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(3, guessResult.Cows, "Wrong cowsCount count");
+        }
 
-        //    Result guessResult = mockNumber.CheckUserGuess(guess);
+        [TestMethod]
+        public void Test_CheckUserGuess_0Bulls2Cows_6660()
+        {
+            string mockValue = "6660";
 
-        //    Assert.AreEqual(1, guessResult.Bulls, "Wrong bulls count");
-        //    Assert.AreEqual(2, guessResult.Cows, "Wrong cows count");
-        //}
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
 
-        //[TestMethod]
-        //public void Test_GetCheat()
-        //{
-        //    string mockValue = "1337";
-        //    SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+            string guess = "0066";
 
-        //    string cheat = "";
-        //    for (int counter = 1; counter <= 10; counter++)
-        //    {
-        //        cheat = mockNumber.GetCheat();
-        //    }
+            Result guessResult = mockNumber.CheckUserGuess(guess);
 
-        //    Assert.AreEqual(mockNumber.ToString(), cheat);
-        //}
+            Assert.AreEqual(1, guessResult.Bulls, "Wrong bullsCount count");
+            Assert.AreEqual(2, guessResult.Cows, "Wrong cowsCount count");
+        }
+
+        [TestMethod]
+        public void Test_GetCheat()
+        {
+            string mockValue = "1337";
+            SecretNumber mockNumber = SecretNumber.GetMockNumber(mockValue);
+
+            string cheat = "";
+            for (int counter = 1; counter <= 10; counter++)
+            {
+                cheat = mockNumber.GetCheat();
+            }
+
+            Assert.AreEqual(mockNumber.ToString(), cheat);
+        }
 
     }
 }

@@ -8,15 +8,15 @@ namespace CowsAndBulls
     public class SecretNumber
     {
         private const int MAX_CHEATS_COUNT = 4;
+        private const int NUMBER_OF_DIGITS = 4;
 
         private Random randomGenerator;
         private char[] cheatNumber;
         private int cheatsCount;
         private int guessesCount;
-        private int firstDigit;
-        private int secondDigit;
-        private int thirdDigit;
-        private int fourthDigit;
+        private int[] secretNumDigits = new int[NUMBER_OF_DIGITS];
+        private bool[] isGuessDigitCowOrBull = new bool[NUMBER_OF_DIGITS];
+        private bool[] isSecretNumDigitCowOrBull = new bool[NUMBER_OF_DIGITS];
 
         public int CheatsCount
         {
@@ -48,12 +48,12 @@ namespace CowsAndBulls
         {
             get
             {
-                return this.firstDigit;
+                return this.secretNumDigits[0];
             }
 
             private set
             {
-                this.firstDigit = value;
+                this.secretNumDigits[0] = value;
             }
         }
 
@@ -61,12 +61,12 @@ namespace CowsAndBulls
         {
             get
             {
-                return this.secondDigit;
+                return this.secretNumDigits[1];
             }
 
             private set
             {
-                this.secondDigit = value;
+                this.secretNumDigits[1] = value;
             }
         }
 
@@ -74,12 +74,12 @@ namespace CowsAndBulls
         {
             get
             {
-                return this.thirdDigit;
+                return this.secretNumDigits[2];
             }
 
             private set
             {
-                this.thirdDigit = value;
+                this.secretNumDigits[2] = value;
             }
         }
 
@@ -87,47 +87,53 @@ namespace CowsAndBulls
         {
             get
             {
-                return this.fourthDigit;
+                return this.secretNumDigits[3];
             }
 
             private set
             {
-                this.fourthDigit = value;
+                this.secretNumDigits[3] = value;
             }
         }
 
         public SecretNumber()
         {
-            randomGenerator = new Random();
-            cheatNumber = new char[4] { 'X', 'X', 'X', 'X' };
+            this.randomGenerator = new Random();
+            this.cheatNumber = new char[NUMBER_OF_DIGITS] { 'X', 'X', 'X', 'X' };
             this.CheatsCount = 0;
             this.GuessesCount = 0;
-            this.GenerateRandomNumbers();
+            this.GenerateRandomDigits();
         }
 
+        /// <summary>
+        /// Reveals a digit of the secret number on each call for up to 4 times
+        /// </summary>
+        /// <returns>Revealed digits at their respective position</returns>
         public string GetCheat()
         {
             if (this.CheatsCount < MAX_CHEATS_COUNT)
             {
                 while (true)
                 {
-                    int randPossition = randomGenerator.Next(0, 4);
-                    if (cheatNumber[randPossition] == 'X')
+                    int randPossition = this.randomGenerator.Next(0, 4);
+
+                    if (this.cheatNumber[randPossition] == 'X')
 
                     {
+                        //sets reveals a digit from the secretNumber at the selected position
                         switch (randPossition)
 	                    {
                             case 0: 
-                                cheatNumber[randPossition] = (char)(FirstDigit + '0'); 
+                                this.cheatNumber[randPossition] = (char)(this.FirstDigit + '0'); 
                                 break;
                             case 1: 
-                                cheatNumber[randPossition] = (char)(SecondDigit + '0');
+                                this.cheatNumber[randPossition] = (char)(this.SecondDigit + '0');
                                 break;
                             case 2: 
-                                cheatNumber[randPossition] = (char)(ThirdDigit + '0');
+                                this.cheatNumber[randPossition] = (char)(this.ThirdDigit + '0');
                                 break;
                             case 3: 
-                                cheatNumber[randPossition] = (char)(FourthDigit + '0');
+                                this.cheatNumber[randPossition] = (char)(this.FourthDigit + '0');
                                 break;
 	                    }
 
@@ -135,157 +141,133 @@ namespace CowsAndBulls
                     }
                 }
 
-                CheatsCount++;
+                this.CheatsCount++;
             }
 
-            return new String(cheatNumber);
+            return new String(this.cheatNumber);
         }
 
-        public Result CheckUserGuess(string number)
+        /// <summary>
+        /// Validates that the passed number complies with the requirements for a secret number
+        /// </summary>
+        /// <param name="number">Number to valdiate</param>
+        private static void ValidateNumber(string number)
         {
-            if (string.IsNullOrEmpty(number) || number.Trim().Length != 4)
+
+            if (string.IsNullOrEmpty(number))
             {
-                throw new ArgumentException("Invalid string number");
+                throw new ArgumentException("Passed number string is null or empty");
             }
 
-            return TryToGuess(number[0] - '0', number[1] - '0', number[2] - '0', number[3] - '0');
+            string trimmedNumber = number.Trim();
+
+            int parsedNumber;
+
+            if (trimmedNumber.Length < NUMBER_OF_DIGITS || int.TryParse(trimmedNumber, out parsedNumber) == false)
+            {
+                throw new FormatException("Invalid number string");
+            }
+
+            if (parsedNumber < 0 || parsedNumber > 9999)
+            {
+                throw new ArgumentOutOfRangeException("The passed number must be positive 4 digit number");
+            }
+
         }
 
-        private Result TryToGuess(int firstDigit, int secondDigit, int thirdDigit, int fourthDigit)
+        /// <summary>
+        /// Checks for the number of bulls in the passed guess number
+        /// </summary>
+        /// <param name="guessNumber">Guess number to check for bulls</param>
+        /// <returns>The number of bulls in the passed guess number</returns>
+        private int CheckBullsCount(string guessNumber)
         {
-            if (firstDigit < 0 || firstDigit > 9)
+            this.isGuessDigitCowOrBull = new bool[NUMBER_OF_DIGITS];
+            this.isGuessDigitCowOrBull = new bool[NUMBER_OF_DIGITS];
+
+            int bullsCount = 0;
+
+            for (var index = 0; index < NUMBER_OF_DIGITS; index++)
             {
-                throw new ArgumentException("Invalid first digit");
+                int secretDigit = this.secretNumDigits[index];
+                int guessDigit = int.Parse(guessNumber[index].ToString());
+
+                if (secretDigit == guessDigit)
+                {
+                    bullsCount++;
+                    this.isGuessDigitCowOrBull[index] = true;
+                    this.isSecretNumDigitCowOrBull[index] = true;
+                }
             }
 
-            if (secondDigit < 0 || secondDigit > 9)
+            return bullsCount;
+        }
+
+        /// <summary>
+        /// Checks the number of cows in the passed guess number
+        /// </summary>
+        /// <param name="guessNumber">Guess number to check</param>
+        /// <returns>The number of cows in the passed guess number</returns>
+        private int CheckCowsCount(string guessNumber)
+        {
+            int cowsCount = 0;
+
+            for (int guessDigitIndex = 0; guessDigitIndex < NUMBER_OF_DIGITS; guessDigitIndex++)
             {
-                throw new ArgumentException("Invalid second digit");
+                if (this.isGuessDigitCowOrBull[guessDigitIndex] == false)
+                {
+                    for (int secretNumDigitIndex = 0; secretNumDigitIndex < NUMBER_OF_DIGITS; secretNumDigitIndex++)
+                    {
+                        if (guessDigitIndex == secretNumDigitIndex)
+                        {
+                            continue;
+                        }
+
+                        int secretDigit = this.secretNumDigits[secretNumDigitIndex];
+                        int guessDigit = int.Parse(guessNumber[guessDigitIndex].ToString());
+
+                        if (guessDigit == secretDigit && this.isSecretNumDigitCowOrBull[secretNumDigitIndex] == false)
+                        {
+                            cowsCount++;
+                            this.isGuessDigitCowOrBull[guessDigitIndex] = true;
+                            this.isSecretNumDigitCowOrBull[secretNumDigitIndex] = true;
+                            break;
+                        }
+                    }
+                }
             }
 
-            if (thirdDigit < 0 || thirdDigit > 9)
-            {
-                throw new ArgumentException("Invalid third digit");
-            }
+            return cowsCount;
+        }
 
-            if (fourthDigit < 0 || fourthDigit > 9)
-            {
-                throw new ArgumentException("Invalid fourth digit");
-            }
+        /// <summary>
+        /// Evaluates the user guess against the secret number
+        /// </summary>
+        /// <param name="guessNumber">Guess number to evaluate</param>
+        /// <returns>The result of the guess</returns>
+        public Result CheckUserGuess(string guessNumber)
+        {
+            ValidateNumber(guessNumber);
+
+            guessNumber = guessNumber.Trim();
 
             this.GuessesCount++;
 
-            int bulls = 0;
+            int bullsCount = CheckBullsCount(guessNumber);
 
-            bool isFirstDigitBullOrCow = false;
-            // checks if firstDigit is a bull:
-            if (this.FirstDigit == firstDigit)
-            {
-                isFirstDigitBullOrCow = true;
-                bulls++;
-            }
-
-            bool isSecondDigitBullOrCow = false;
-            // checks if secondDigit is a bull:
-            if (this.SecondDigit == secondDigit)
-            {
-                isSecondDigitBullOrCow = true;
-                bulls++;
-            }
-
-            bool isThirdDigitBullOrCow = false;
-            // checks if thirdDigit is a bull:
-            if (this.ThirdDigit == thirdDigit)
-            {
-                isThirdDigitBullOrCow = true;
-                bulls++;
-            }
-
-            bool isFourthDigitBullOrCow = false;
-            // checks if fourthDigit is a bull:
-            if (this.FourthDigit == fourthDigit)
-            {
-                isFourthDigitBullOrCow = true;
-                bulls++;
-            }
-
-            int cows = 0;
-            // checks if firstDigit is cow:
-            if (!isSecondDigitBullOrCow && firstDigit == SecondDigit)
-            {
-                isSecondDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isThirdDigitBullOrCow && firstDigit == ThirdDigit)
-            {
-                isThirdDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isFourthDigitBullOrCow && firstDigit == FourthDigit)
-            {
-                isFourthDigitBullOrCow = true;
-                cows++;
-            }
-
-            // checks if secondDigit is cow:
-            if (!isFirstDigitBullOrCow && secondDigit == FirstDigit)
-            {
-                isFirstDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isThirdDigitBullOrCow && secondDigit == ThirdDigit)
-            {
-                isThirdDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isFourthDigitBullOrCow && secondDigit == FourthDigit)
-            {
-                isFourthDigitBullOrCow = true;
-                cows++;
-            }
-
-            // checks if thirdDigit is cow:
-            if (!isFirstDigitBullOrCow && thirdDigit == FirstDigit)
-            {
-                isFirstDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isSecondDigitBullOrCow && thirdDigit == SecondDigit)
-            {
-                isSecondDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isFourthDigitBullOrCow && thirdDigit == FourthDigit)
-            {
-                isFourthDigitBullOrCow = true;
-                cows++;
-            }
-
-            // checks if fourthDigit is cow:
-            if (!isFirstDigitBullOrCow && fourthDigit == FirstDigit)
-            {
-                isFirstDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isSecondDigitBullOrCow && fourthDigit == SecondDigit)
-            {
-                isSecondDigitBullOrCow = true;
-                cows++;
-            }
-            else if (!isThirdDigitBullOrCow && fourthDigit == ThirdDigit)
-            {
-                isThirdDigitBullOrCow = true;
-                cows++;
-            }
+            int cowsCount = CheckCowsCount(guessNumber);
 
             Result guessResult = new Result();
-            guessResult.Bulls = bulls;
-            guessResult.Cows = cows;
-            return guessResult;
+            guessResult.Bulls = bullsCount;
+            guessResult.Cows = cowsCount;
 
+            return guessResult;
         }
 
-        private void GenerateRandomNumbers()
+        /// <summary>
+        /// Generates the random digits of the secret number
+        /// </summary>
+        private void GenerateRandomDigits()
         {
             this.FirstDigit = randomGenerator.Next(0, 10);
             this.SecondDigit = randomGenerator.Next(0, 10);
@@ -312,16 +294,36 @@ namespace CowsAndBulls
             }
             else
             {
-                return (FirstDigit == objectToCompare.FirstDigit &&
-                        SecondDigit == objectToCompare.SecondDigit &&
-                        ThirdDigit == objectToCompare.ThirdDigit &&
-                        FourthDigit == objectToCompare.FourthDigit);
+                return (this.FirstDigit == objectToCompare.FirstDigit &&
+                        this.SecondDigit == objectToCompare.SecondDigit &&
+                        this.ThirdDigit == objectToCompare.ThirdDigit &&
+                        this.FourthDigit == objectToCompare.FourthDigit);
             }
         }
 
         public override int GetHashCode()
         {
-            return FirstDigit.GetHashCode() ^ SecondDigit.GetHashCode() ^ ThirdDigit.GetHashCode() ^ FourthDigit.GetHashCode();
+            return this.FirstDigit.GetHashCode() ^ this.SecondDigit.GetHashCode() ^ 
+                this.ThirdDigit.GetHashCode() ^ this.FourthDigit.GetHashCode();
+        }
+
+        /// <summary>
+        /// USED ONLY FOR TESTING!
+        /// Creates a SecretNumber object having the passed value
+        /// </summary>
+        /// <param name="mockValue">Value for the secret number</param>
+        /// <returns>Mock secret number with predetermined value</returns>
+        public static SecretNumber GetMockNumber(string mockValue)
+        {
+            ValidateNumber(mockValue);
+
+            SecretNumber mockNumber = new SecretNumber();
+            mockNumber.FirstDigit = int.Parse(mockValue[0].ToString());
+            mockNumber.SecondDigit = int.Parse(mockValue[1].ToString());
+            mockNumber.ThirdDigit = int.Parse(mockValue[2].ToString());
+            mockNumber.FourthDigit = int.Parse(mockValue[3].ToString());
+
+            return mockNumber;
         }
     }
 }
