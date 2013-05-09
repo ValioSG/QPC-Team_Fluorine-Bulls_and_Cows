@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CowsAndBulls
 {
+    /// <summary>
+    /// The following structure keeps track of the result after each guess and returns it in a clear string format.
+    /// </summary>
     public struct Result
     {
         private int bulls;
@@ -14,11 +15,10 @@ namespace CowsAndBulls
         {
             get
             {
-                //get
                 return this.bulls;
             }
 
-            set
+            internal set
             {
                 this.bulls = value;
             }
@@ -28,11 +28,10 @@ namespace CowsAndBulls
         {
             get
             {
-                //set
                 return this.cows;
             }
 
-            set
+            internal set
             {
                 this.cows = value;
             }

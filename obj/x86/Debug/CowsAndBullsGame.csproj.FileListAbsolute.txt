@@ -3,3 +3,8 @@ D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine
 D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.exe
 D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.pdb
 D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\CowsAndBullsGame.csprojResolveAssemblyReference.cache
+C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.exe
+C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.pdb
+C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\CowsAndBullsGame.csprojResolveAssemblyReference.cache
+C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.exe
+C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.pdb

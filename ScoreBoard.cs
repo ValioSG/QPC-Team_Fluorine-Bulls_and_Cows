@@ -27,7 +27,7 @@ namespace CowsAndBulls
             }
             catch (IOException)
             {
-                // Stop reading
+                
             }
         }
 
