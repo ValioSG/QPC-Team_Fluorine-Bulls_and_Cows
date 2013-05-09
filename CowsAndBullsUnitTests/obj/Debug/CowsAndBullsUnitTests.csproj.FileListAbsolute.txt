@@ -1,0 +1,7 @@
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\CowsAndBullsUnitTests.dll
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\CowsAndBullsUnitTests.pdb
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\BullsAndCowsGame.exe
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\BullsAndCowsGame.pdb
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.csprojResolveAssemblyReference.cache
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.dll
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.pdb
