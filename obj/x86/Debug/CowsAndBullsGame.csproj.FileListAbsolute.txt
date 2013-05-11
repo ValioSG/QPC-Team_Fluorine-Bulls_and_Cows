@@ -10,3 +10,6 @@ C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\Bull
 C:\Telerik Academy\KPK\Team Work\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.pdb
 C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.exe
 C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\BullsAndCowsGame.pdb
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.exe
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.pdb
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\CowsAndBullsGame.csprojResolveAssemblyReference.cache

@@ -5,3 +5,10 @@ D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine
 D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.csprojResolveAssemblyReference.cache
 D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.dll
 D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.pdb
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\CowsAndBullsUnitTests.dll
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\CowsAndBullsUnitTests.pdb
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\BullsAndCowsGame.exe
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\bin\Debug\BullsAndCowsGame.pdb
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.csprojResolveAssemblyReference.cache
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.dll
+C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\CowsAndBullsUnitTests\obj\Debug\CowsAndBullsUnitTests.pdb
