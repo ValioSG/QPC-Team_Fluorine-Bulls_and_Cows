@@ -7,7 +7,7 @@ namespace CowsAndBulls
 {
     class GameEngine
     {
-	// ne szm sigurna dali raboti,ama e testvano 100% vcera do 3 4asa sutrinta
+	// ne szm sigurna dali raboti,ama e testvano 100% vcera do 3 4asa sutrintaааа
         public const string ScoresFile = "scores.txt";
         public const string WelcomeMessage = "Welcome to “Bulls and Cows” game. Please try to guess my secret 4-digit number.\nUse 'top' to view the top scoreboard, 'restart' to start a new game and 'help' to cheat and 'exit' to quit the game.";
         public const string WrongNumberMessage = "Wrong number!";
