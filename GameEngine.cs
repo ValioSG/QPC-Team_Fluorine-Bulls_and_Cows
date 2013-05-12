@@ -1,25 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CowsAndBulls
 {
-    class GameEngine
+    private class GameEngine
     {
-        public const string SCORES_FILE = "scores.txt";
-        public const string WELCOME_MESSAGE = "Welcome to “Bulls and Cows” game. Please try to guess my secret 4-digit "+
-                                                "number.\nUse 'top' to view the top scoreboard, 'restart' to start a new "+
+        private const string SCORES_FILE = "scores.txt";
+        private const string WELCOME_MESSAGE = "Welcome to “Bulls and Cows” game. Please try to guess my secret 4-digit " +
+                                                "number.\nUse 'top' to view the top scoreboard, 'restart' to start a new " +
                                                 "game and 'help' \nto cheat and 'exit' to quit the game.";
-        public const string WRONG_NUMBER_MESSAGE = "Wrong number!";
-        public const string INVALID_COMMAND_MESSAGE = "Incorrect guess or command!";
-        public const string NUMBER_GUESSED_WITHOUT_CHEATS = "Congratulations! You guessed the secret number in {0} {1}."+
+        private const string WRONG_NUMBER_MESSAGE = "Wrong number!";
+        private const string INVALID_COMMAND_MESSAGE = "Incorrect guess or command!";
+        private const string NUMBER_GUESSED_WITHOUT_CHEATS = "Congratulations! You guessed the secret number in {0} {1}." +
                                                             "\nPlease enter your name for the top scoreboard: ";
-        public const string NUMBER_GUESSED_WITH_CHEATS = "Congratulations! You guessed the secret number in {0} {1} and {2} {3}."+
+        private const string NUMBER_GUESSED_WITH_CHEATS = "Congratulations! You guessed the secret number in {0} {1} and {2} {3}." +
                                                             "\nYou are not allowed to enter the top scoreboard.";
-        public const string GOOD_BYE_MESSAGE = "Good bye!";
+        private const string GOOD_BYE_MESSAGE = "Good bye!";
         
-        static void Main()
+        /// <summary>
+        /// Represents the Cows And Bulls game UI
+        /// </summary>
+        public static void Main()
         {
             SecretNumber bullsAndCowsNumber = new SecretNumber();
             Scoreboard scoreBoard = new Scoreboard(SCORES_FILE);
@@ -45,6 +45,7 @@ namespace CowsAndBulls
                             Console.Write(scoreBoard);
                             break;
                         }
+
                     case "restart":
                         {
                             Console.WriteLine();
@@ -52,11 +53,13 @@ namespace CowsAndBulls
                             bullsAndCowsNumber = new SecretNumber();
                             break;
                         }
+
                     case "help":
                         {
                             Console.WriteLine("The number looks like {0}.", bullsAndCowsNumber.GetCheat());
                             break;
                         }
+
                     default:
                         {
                             try
@@ -76,7 +79,7 @@ namespace CowsAndBulls
                                         Console.WriteLine(NUMBER_GUESSED_WITH_CHEATS,
                                             bullsAndCowsNumber.GuessesCount, bullsAndCowsNumber.GuessesCount == 1 ? "attempt" 
                                                                                                                     : "attempts",
-                                            bullsAndCowsNumber.CheatsCount, bullsAndCowsNumber.CheatsCount == 1? "cheat" 
+                                            bullsAndCowsNumber.CheatsCount, bullsAndCowsNumber.CheatsCount == 1 ? "cheat" 
                                                                                                                     : "cheats");
                                     }
 
@@ -93,8 +96,8 @@ namespace CowsAndBulls
                             }
                             catch (Exception ex)
                             {
-                                //Modified by KrisNickson => this way it will catch all 
-                                //expcetions the new validation in CheckUserGuess throws
+                                ////Modified by KrisNickson => this way it will catch all 
+                                ////expcetions the new validation in CheckUserGuess throws
                                 if (ex is ArgumentException || ex is FormatException)
                                 {
                                     Console.WriteLine(INVALID_COMMAND_MESSAGE);
@@ -105,6 +108,7 @@ namespace CowsAndBulls
                         }
                 }
             }
+
             scoreBoard.SaveToFile(SCORES_FILE);
         }
     }
