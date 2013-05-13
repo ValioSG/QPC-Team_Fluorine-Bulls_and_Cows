@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CowsAndBulls;
+using System.IO;
 
 namespace CowsAndBullsUnitTests
 {
@@ -7,8 +9,12 @@ namespace CowsAndBullsUnitTests
     public class GameEngineTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestExitCommand()
         {
+            //GameEngine.Main();
+            ////Console.SetIn(new StringReader("exit"));
+
+            //Assert.AreEqual("Good Bye", GameEngine.GOOD_BYE_MESSAGE);
         }
     }
 }

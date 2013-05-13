@@ -2,7 +2,7 @@
 
 namespace CowsAndBulls
 {
-    private class GameEngine
+    public class GameEngine
     {
         private const string SCORES_FILE = "scores.txt";
         private const string WELCOME_MESSAGE = "Welcome to “Bulls and Cows” game. Please try to guess my secret 4-digit " +
@@ -14,7 +14,7 @@ namespace CowsAndBulls
                                                             "\nPlease enter your name for the top scoreboard: ";
         private const string NUMBER_GUESSED_WITH_CHEATS = "Congratulations! You guessed the secret number in {0} {1} and {2} {3}." +
                                                             "\nYou are not allowed to enter the top scoreboard.";
-        private const string GOOD_BYE_MESSAGE = "Good bye!";
+        public const string GOOD_BYE_MESSAGE = "Good bye!";
         
         /// <summary>
         /// Represents the Cows And Bulls game UI
@@ -26,11 +26,13 @@ namespace CowsAndBulls
 
             Console.WriteLine(WELCOME_MESSAGE);
 
+            string command = string.Empty;
+
             while (true)
             {
                 Console.Write("Enter your guess or command: ");
 
-                string command = Console.ReadLine();
+                command = Console.ReadLine();
 
                 if (command == "exit")
                 {
