@@ -15,7 +15,9 @@ namespace CowsAndBulls
         private const string NUMBER_GUESSED_WITH_CHEATS = "Congratulations! You guessed the secret number in {0} {1} and {2} {3}." +
                                                             "\nYou are not allowed to enter the top scoreboard.";
         public const string GOOD_BYE_MESSAGE = "Good bye!";
-        
+
+        public const string INPUT_MESSAGE = "Enter your guess or command: ";
+
         /// <summary>
         /// Represents the Cows And Bulls game UI
         /// </summary>
@@ -30,11 +32,11 @@ namespace CowsAndBulls
 
             while (true)
             {
-                Console.Write("Enter your guess or command: ");
+                Console.Write(INPUT_MESSAGE);
 
                 command = Console.ReadLine();
 
-                if (command == "exit")
+                if (command == "exit") //this stays here not in the swich because break the while loop
                 {
                     Console.WriteLine(GOOD_BYE_MESSAGE);
                     break;
@@ -43,71 +45,59 @@ namespace CowsAndBulls
                 switch (command)
                 {
                     case "top":
-                        {
-                            Console.Write(scoreBoard);
-                            break;
-                        }
-
+                        Console.Write(scoreBoard);
+                        break;
                     case "restart":
-                        {
-                            Console.WriteLine();
-                            Console.WriteLine(WELCOME_MESSAGE);
-                            bullsAndCowsNumber = new SecretNumber();
-                            break;
-                        }
-
+                        Console.WriteLine();
+                        Console.WriteLine(WELCOME_MESSAGE);
+                        bullsAndCowsNumber = new SecretNumber();
+                        break;
                     case "help":
-                        {
-                            Console.WriteLine("The number looks like {0}.", bullsAndCowsNumber.GetCheat());
-                            break;
-                        }
-
+                        Console.WriteLine("The number looks like {0}.", bullsAndCowsNumber.GetCheat());
+                        break;
                     default:
+                        try
                         {
-                            try
+                            Result guessResult = bullsAndCowsNumber.CheckUserGuess(command);
+                            if (guessResult.Bulls == 4)
                             {
-                                Result guessResult = bullsAndCowsNumber.CheckUserGuess(command);
-                                if (guessResult.Bulls == 4)
+                                if (bullsAndCowsNumber.CheatsCount == 0)
                                 {
-                                    if (bullsAndCowsNumber.CheatsCount == 0)
-                                    {
-                                        Console.Write(NUMBER_GUESSED_WITHOUT_CHEATS, bullsAndCowsNumber.GuessesCount, 
-                                                                bullsAndCowsNumber.GuessesCount == 1 ? "attempt" : "attempts");
-                                        string name = Console.ReadLine();
-                                        scoreBoard.AddScore(name, bullsAndCowsNumber.GuessesCount);
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine(NUMBER_GUESSED_WITH_CHEATS,
-                                            bullsAndCowsNumber.GuessesCount, bullsAndCowsNumber.GuessesCount == 1 ? "attempt" 
-                                                                                                                    : "attempts",
-                                            bullsAndCowsNumber.CheatsCount, bullsAndCowsNumber.CheatsCount == 1 ? "cheat" 
-                                                                                                                    : "cheats");
-                                    }
-
-                                    Console.Write(scoreBoard);
-                                    Console.WriteLine();
-                                    Console.WriteLine(WELCOME_MESSAGE);
-
-                                    bullsAndCowsNumber = new SecretNumber();
+                                    Console.Write(NUMBER_GUESSED_WITHOUT_CHEATS, bullsAndCowsNumber.GuessesCount,
+                                                            bullsAndCowsNumber.GuessesCount == 1 ? "attempt" : "attempts");
+                                    string name = Console.ReadLine();
+                                    scoreBoard.AddScore(name, bullsAndCowsNumber.GuessesCount);
                                 }
                                 else
                                 {
-                                    Console.WriteLine("{0} {1}", WRONG_NUMBER_MESSAGE, guessResult);
+                                    Console.WriteLine(NUMBER_GUESSED_WITH_CHEATS,
+                                        bullsAndCowsNumber.GuessesCount, bullsAndCowsNumber.GuessesCount == 1 ? "attempt"
+                                                                                                                : "attempts",
+                                        bullsAndCowsNumber.CheatsCount, bullsAndCowsNumber.CheatsCount == 1 ? "cheat"
+                                                                                                                : "cheats");
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                                ////Modified by KrisNickson => this way it will catch all 
-                                ////expcetions the new validation in CheckUserGuess throws
-                                if (ex is ArgumentException || ex is FormatException)
-                                {
-                                    Console.WriteLine(INVALID_COMMAND_MESSAGE);
-                                } 
-                            }
 
-                            break;
+                                Console.Write(scoreBoard);
+                                Console.WriteLine();
+                                Console.WriteLine(WELCOME_MESSAGE);
+
+                                bullsAndCowsNumber = new SecretNumber();
+                            }
+                            else
+                            {
+                                Console.WriteLine("{0} {1}", WRONG_NUMBER_MESSAGE, guessResult);
+                            }
                         }
+                        catch (Exception ex)
+                        {
+                            ////Modified by KrisNickson => this way it will catch all 
+                            ////expcetions the new validation in CheckUserGuess throws
+                            if (ex is ArgumentException || ex is FormatException)
+                            {
+                                Console.WriteLine(INVALID_COMMAND_MESSAGE);
+                            }
+                        }
+                    break;
                 }
             }
 
