@@ -11,12 +11,18 @@ namespace CowsAndBulls
         private SortedSet<PlayerScore> scores;
         private const int MaxPlayersToShowInScoreboard = 10;
 
+        /// <summary>
+        /// Reads score results from the score file.
+        /// </summary>
+        /// <param name="filename">The score file name or path.</param>
         public Scoreboard(string filename)
         {
             this.scores = new SortedSet<PlayerScore>();
+
             try
             {
-                using (StreamReader inputStream = new StreamReader(filename))
+                StreamReader inputStream = new StreamReader(filename);
+                using (inputStream)
                 {
                     while (!inputStream.EndOfStream)
                     {
@@ -25,18 +31,51 @@ namespace CowsAndBulls
                     }
                 }
             }
-            catch (IOException)
+            catch (Exception ex)
             {
-                
+                if (ex is ArgumentException)
+                {
+                    Console.WriteLine("Path is an empty string or incorrect syntax.");
+                }
+                else if (ex is ArgumentNullException)
+                {
+                    Console.WriteLine("Path is null.");
+                }
+                else if (ex is FileNotFoundException)
+                {
+                    Console.WriteLine("The file cannot be found.");
+                }
+                else if (ex is DirectoryNotFoundException)
+                {
+                    Console.WriteLine("The specified path is invalid, such as being on an unmapped drive.");
+                }
+                else if (ex is IOException)
+                {
+                    Console.WriteLine("Path is null.");
+                }
+                else if (ex is OutOfMemoryException)
+                {
+                    Console.WriteLine("Unable to store file. Out of memory.");
+                }
+
             }
         }
 
+        /// <summary>
+        /// Create new object to be storred in the score file.
+        /// </summary>
+        /// <param name="name">Name of the player</param>
+        /// <param name="guesses">Number of guesses</param>
         public void AddScore(string name, int guesses)
         {
             PlayerScore newScore = new PlayerScore(name, guesses);
             this.scores.Add(newScore);
         }
 
+        /// <summary>
+        /// Save the generated scores from scores to the file.
+        /// </summary>
+        /// <param name="filename">The score file name or path.</param>
         public void SaveToFile(string filename)
         {
             try
@@ -49,9 +88,40 @@ namespace CowsAndBulls
                     }
                 }
             }
-            catch (IOException)
+            catch (Exception ex)
             {
-                // Stop writing
+                if (ex is ArgumentException)
+                {
+                    Console.WriteLine("Path is an empty string or incorrect syntax.");
+                }
+                else if (ex is ArgumentNullException)
+                {
+                    Console.WriteLine("Path is null.");
+                }
+                else if (ex is FileNotFoundException)
+                {
+                    Console.WriteLine("The file cannot be found.");
+                }
+                else if (ex is DirectoryNotFoundException)
+                {
+                    Console.WriteLine("The specified path is invalid, such as being on an unmapped drive.");
+                }
+                else if (ex is IOException)
+                {
+                    Console.WriteLine("Path is null.");
+                }
+                else if (ex is UnauthorizedAccessException)
+                {
+                    Console.WriteLine("Unautorized access to the file.");
+                }
+                else if (ex is PathTooLongException)
+                {
+                    Console.WriteLine("Path to the file is too long.");
+                }
+                else if (ex is System.Security.SecurityException)
+                {
+                    Console.WriteLine("The caller does not have the required permission.");
+                }
             }
         }
 
@@ -61,14 +131,20 @@ namespace CowsAndBulls
             {
                 return "Top scoreboard is empty." + Environment.NewLine;
             }
+
             StringBuilder scoreBoard = new StringBuilder();
             scoreBoard.AppendLine("Scoreboard:");
             int count = 0;
+
             foreach (PlayerScore gameScore in scores)
             {
                 count++;
                 scoreBoard.AppendLine(string.Format("{0}. {1}", count, gameScore));
-                if (count > MaxPlayersToShowInScoreboard) break;
+
+                if (count > MaxPlayersToShowInScoreboard)
+                {
+                    break;
+                }
             }
             return scoreBoard.ToString();
         }
