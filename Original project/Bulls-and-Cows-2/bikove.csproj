@@ -42,14 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SecretNumber.cs" />
-    <Compile Include="PlayerScore.cs" />
-    <Compile Include="Result.cs" />
-    <Compile Include="GameEngine.cs" />
+    <Compile Include="BullsAndCowsNumber.cs" />
+    <Compile Include="gameScore.cs" />
+    <Compile Include="rezultat.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="ScoreBoard.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -84,7 +84,7 @@ namespace CowsAndBulls
             }
             else
             {
-                return this.GuessesCount.Equals(objectToCompare) && this.Name.Equals(objectToCompare);
+                return this.GuessesCount.Equals(objectToCompare.GuessesCount) && this.Name.Equals(objectToCompare.Name);
             }
         }
 

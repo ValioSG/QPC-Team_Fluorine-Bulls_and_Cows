@@ -12,3 +12,4 @@ C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\
 C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.exe
 C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\bin\Debug\BullsAndCowsGame.pdb
 C:\Users\NewBeginning\Documents\GitHub\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\CowsAndBullsGame.csprojResolveAssemblyReference.cache
+D:\INFORMATICS STUFF\GIT HUB REP AND STUFF\Core pwd repository\QPC-Team_Fluorine-Bulls_and_Cows\obj\x86\Debug\CowsAndBullsGame.csprojResolveAssemblyReference.cache

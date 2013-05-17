@@ -34,5 +34,54 @@ namespace CowsAndBullsUnitTests
             PlayerScore testPlayer = new PlayerScore("Pesho", 12);
             Assert.AreEqual(expectedString, testPlayer.ToString());
         }
+
+        [TestMethod]
+        public void EqualsTest_True()
+        {
+            PlayerScore testPlayer1 = new PlayerScore("Pesho", 12);
+            PlayerScore testPlayer2 = new PlayerScore("Pesho", 12);
+
+            bool areEqual = testPlayer1.Equals(testPlayer2);
+
+            Assert.IsTrue(areEqual);
+        }
+
+        [TestMethod]
+        public void EqualsTest_False()
+        {
+            PlayerScore testPlayer1 = new PlayerScore("Pesho", 12);
+            PlayerScore testPlayer2 = new PlayerScore("Pesho", 122);
+
+            bool areEqual = testPlayer1.Equals(testPlayer2);
+
+            Assert.IsFalse(areEqual);
+        }
+
+        [TestMethod]
+        public void CompareTo_Equal()
+        {
+            PlayerScore testPlayer1 = new PlayerScore("Pesho", 122);
+            PlayerScore testPlayer2 = new PlayerScore("Pesho", 122);
+
+            Assert.AreEqual(0, testPlayer1.CompareTo(testPlayer2));
+        }
+
+        [TestMethod]
+        public void CompareTo_Higher()
+        {
+            PlayerScore testPlayer1 = new PlayerScore("Pesho", 1222);
+            PlayerScore testPlayer2 = new PlayerScore("Pesho", 122);
+
+            Assert.AreEqual(1, testPlayer1.CompareTo(testPlayer2));
+        }
+
+        [TestMethod]
+        public void CompareTo_Lower()
+        {
+            PlayerScore testPlayer1 = new PlayerScore("Pesho", 12);
+            PlayerScore testPlayer2 = new PlayerScore("Pesho", 122);
+
+            Assert.AreEqual(-1, testPlayer1.CompareTo(testPlayer2));
+        }
     }
 }
