@@ -65,11 +65,6 @@ namespace CowsAndBulls
             this.GuessesCount = guessesCount;
         }
 
-        /// <summary>
-        /// Cehck if the Player score object has the same value as another one
-        /// </summary>
-        /// <param name="obj">PlayerScore to compare with</param>
-        /// <returns>True of the objects are equal, false if not</returns>
         public override bool Equals(object obj)
         {
             PlayerScore objectToCompare;
@@ -93,31 +88,17 @@ namespace CowsAndBulls
             }
         }
 
-        /// <summary>
-        /// Gets a hash code of the object
-        /// </summary>
-        /// <returns>Hash code of the object</returns>
         public override int GetHashCode()
         {
             return this.Name.GetHashCode() ^ this.GuessesCount.GetHashCode();
         }
 
-        /// <summary>
-        /// Stringifies the object
-        /// </summary>
-        /// <returns>String containing the objects data</returns>
         public override string ToString()
         {
             string  guessForm = this.GuessesCount == 1 ? "guess" : "guesses";
             return string.Format("{0} --> {1} {2}", this.Name, this.GuessesCount, guessForm);
         }
 
-        /// <summary>
-        /// Compare a PlayerScore object to another one
-        /// </summary>
-        /// <param name="obj">Player score object to compare to</param>
-        /// <returns>< 0 if the first object has higher value, 0 if the objects have the same value
-        /// >1 if the first object has higher value</returns>
         public int CompareTo(object obj)
         {
             PlayerScore objectToCompare;
