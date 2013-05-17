@@ -101,12 +101,11 @@ namespace CowsAndBulls
                             }
                         }
 
-                        Console.WriteLine("kur");
-                        break;
+                    break;
                 }
             }
 
-            scoreBoard.SaveToFile(SCORES_FILE);
+            scoreBoard.SaveToFile();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace CowsAndBulls
     {
         private SortedSet<PlayerScore> scores;
         private const int MaxPlayersToShowInScoreboard = 10;
+        private string fileName = string.Empty;
 
         /// <summary>
         /// Reads score results from the score file.
@@ -17,48 +18,19 @@ namespace CowsAndBulls
         /// <param name="filename">The score file name or path.</param>
         public Scoreboard(string filename)
         {
+            this.fileName = filename;
             this.scores = new SortedSet<PlayerScore>();
 
-            try
+            StreamReader inputStream = new StreamReader(this.fileName);
+            using (inputStream)
             {
-                StreamReader inputStream = new StreamReader(filename);
-                using (inputStream)
+                while (!inputStream.EndOfStream)
                 {
-                    while (!inputStream.EndOfStream)
-                    {
-                        string scoreString = inputStream.ReadLine();
-                        this.scores.Add(PlayerScore.Deserialize(scoreString));
-                    }
+                    string scoreString = inputStream.ReadLine();
+                    this.scores.Add(PlayerScore.Deserialize(scoreString));
                 }
             }
-            catch (Exception ex)
-            {
-                if (ex is ArgumentException)
-                {
-                    Console.WriteLine("Path is an empty string or incorrect syntax.");
-                }
-                else if (ex is ArgumentNullException)
-                {
-                    Console.WriteLine("Path is null.");
-                }
-                else if (ex is FileNotFoundException)
-                {
-                    Console.WriteLine("The file cannot be found.");
-                }
-                else if (ex is DirectoryNotFoundException)
-                {
-                    Console.WriteLine("The specified path is invalid, such as being on an unmapped drive.");
-                }
-                else if (ex is IOException)
-                {
-                    Console.WriteLine("Path is null.");
-                }
-                else if (ex is OutOfMemoryException)
-                {
-                    Console.WriteLine("Unable to store file. Out of memory.");
-                }
-
-            }
+            
         }
 
         /// <summary>
@@ -76,51 +48,13 @@ namespace CowsAndBulls
         /// Save the generated scores from scores to the file.
         /// </summary>
         /// <param name="filename">The score file name or path.</param>
-        public void SaveToFile(string filename)
+        public void SaveToFile()
         {
-            try
+            using (StreamWriter outputStream = new StreamWriter(this.fileName))
             {
-                using (StreamWriter outputStream = new StreamWriter(filename))
+                foreach (PlayerScore gameScore in scores)
                 {
-                    foreach (PlayerScore gameScore in scores)
-                    {
-                        outputStream.WriteLine(gameScore.Serialize());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex is ArgumentException)
-                {
-                    Console.WriteLine("Path is an empty string or incorrect syntax.");
-                }
-                else if (ex is ArgumentNullException)
-                {
-                    Console.WriteLine("Path is null.");
-                }
-                else if (ex is FileNotFoundException)
-                {
-                    Console.WriteLine("The file cannot be found.");
-                }
-                else if (ex is DirectoryNotFoundException)
-                {
-                    Console.WriteLine("The specified path is invalid, such as being on an unmapped drive.");
-                }
-                else if (ex is IOException)
-                {
-                    Console.WriteLine("Path is null.");
-                }
-                else if (ex is UnauthorizedAccessException)
-                {
-                    Console.WriteLine("Unautorized access to the file.");
-                }
-                else if (ex is PathTooLongException)
-                {
-                    Console.WriteLine("Path to the file is too long.");
-                }
-                else if (ex is System.Security.SecurityException)
-                {
-                    Console.WriteLine("The caller does not have the required permission.");
+                    outputStream.WriteLine(gameScore.Serialize());
                 }
             }
         }

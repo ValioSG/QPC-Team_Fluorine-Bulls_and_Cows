@@ -4,7 +4,7 @@ using System.Linq;
 namespace CowsAndBulls
 {
     /// <summary>
-    /// The following structure keeps track of the result after each guess and returns it in a clear string format.
+    /// Keeps track of the result after each guess and returns it in a clear string format.
     /// </summary>
     public struct Result
     {
