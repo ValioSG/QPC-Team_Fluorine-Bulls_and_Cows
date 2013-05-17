@@ -8,72 +8,158 @@ namespace CowsAndBulls
 {
     public class PlayerScore : IComparable
     {
-        public PlayerScore(string ime, int guesses)
-        {
-            this.Name = ime;
-            this.Guesses = guesses;
-        }
 
+        private string name;
+        private int guessesCount;
+
+        /// <summary>
+        /// Gets tha name of the player
+        /// </summary>
         public string Name
         {
-            get;
-            private set;
+            get
+            {
+                return this.name;
+            }
+
+            private set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("The passed name is null or empty");
+                }
+
+                this.name = value;
+            }
         }
 
-        public int Guesses
+        /// <summary>
+        /// Gets the number og gusses
+        /// </summary>
+        public int GuessesCount
         {
-            get;
-            private set;
+            get
+            {
+                return this.guessesCount;
+            }
+
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("The guess cunt cant be a negative number");
+                }
+
+                this.guessesCount = value;
+            }
         }
 
+        /// <summary>
+        /// Create a player score object with name and number of guesses
+        /// </summary>
+        /// <param name="name">Name of the player</param>
+        /// <param name="guessesCount">number of guesses</param>
+        public PlayerScore(string name, int guessesCount)
+        {
+            this.Name = name;
+            this.GuessesCount = guessesCount;
+        }
+
+        /// <summary>
+        /// Cehck if the Player score object has the same value as another one
+        /// </summary>
+        /// <param name="obj">PlayerScore to compare with</param>
+        /// <returns>True of the objects are equal, false if not</returns>
         public override bool Equals(object obj)
         {
-            PlayerScore objectToCompare = obj as PlayerScore;
+            PlayerScore objectToCompare;
+
+            if (obj is PlayerScore)
+            {
+                objectToCompare = obj as PlayerScore;
+            }
+            else
+            {
+                throw new ArgumentException("The passed object is not comparable to PlayerScore");
+            }
+
             if (objectToCompare == null)
             {
                 return false;
             }
             else
             {
-                return this.Guesses.Equals(objectToCompare) && this.Name.Equals(objectToCompare);
+                return this.GuessesCount.Equals(objectToCompare) && this.Name.Equals(objectToCompare);
             }
         }
 
+        /// <summary>
+        /// Gets a hash code of the object
+        /// </summary>
+        /// <returns>Hash code of the object</returns>
         public override int GetHashCode()
         {
-            return this.Name.GetHashCode() ^ this.Guesses.GetHashCode();
+            return this.Name.GetHashCode() ^ this.GuessesCount.GetHashCode();
         }
 
+        /// <summary>
+        /// Stringifies the object
+        /// </summary>
+        /// <returns>String containing the objects data</returns>
         public override string ToString()
         {
-            return string.Format("{0} --> {1} {2}", this.Name, this.Guesses, this.Guesses == 1 ? "guess" : "guesses");
+            string  guessForm = this.GuessesCount == 1 ? "guess" : "guesses";
+            return string.Format("{0} --> {1} {2}", this.Name, this.GuessesCount, guessForm);
         }
 
+        /// <summary>
+        /// Compare a PlayerScore object to another one
+        /// </summary>
+        /// <param name="obj">Player score object to compare to</param>
+        /// <returns>< 0 if the first object has higher value, 0 if the objects have the same value
+        /// >1 if the first object has higher value</returns>
         public int CompareTo(object obj)
         {
-            PlayerScore objectToCompare = obj as PlayerScore;
+            PlayerScore objectToCompare;
+
+            if (obj is PlayerScore)
+            {
+                objectToCompare = obj as PlayerScore;
+            }
+            else
+            {
+                throw new ArgumentException("The passed object is not comparable to PlayerScore");
+            }
+
             if (objectToCompare == null)
             {
                 return -1;
             }
-            if (this.Guesses.CompareTo(objectToCompare.Guesses) == 0)
-            {
-                
-				
-				
+
+            if (this.GuessesCount.CompareTo(objectToCompare.GuessesCount) == 0)
+            {	
 				return this.Name.CompareTo(objectToCompare.Name);
             }
             else
             {
-                return this.Guesses.CompareTo(objectToCompare.Guesses);
+                return this.GuessesCount.CompareTo(objectToCompare.GuessesCount);
             }
         }
 
+        /// <summary>
+        /// Serializes the object
+        /// </summary>
+        /// <returns>Serialized version of the object in a string form</returns>
         public string Serialize()
         {
-            return string.Format("{0}_:::_{1}", this.Name, this.Guesses);
+            return string.Format("{0}_:::_{1}", this.Name, this.GuessesCount);
         }
 
+        /// <summary>
+        /// Deserializes an object
+        /// </summary>
+        /// <param name="data">Serialized object data</param>
+        /// <returns>PlayerScoreObject</returns>
         public static PlayerScore Deserialize(string data)
         {
             string[] dataAsStringArray = data.Split(new string[] { "_:::_" }, StringSplitOptions.None);
